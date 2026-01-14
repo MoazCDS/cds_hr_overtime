@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem
+        id="hr_overtime_root_menu"
+        name="Overtime"
+        groups="cds_hr_overtime.hr_overtime_user_group"/>
+</odoo>

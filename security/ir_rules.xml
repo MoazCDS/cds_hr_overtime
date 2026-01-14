@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <data>
+            <record id="ir_rule_hr_overtime_user" model="ir.rule">
+                <field name="name">ir_rule_hr_overtime_user</field>
+                <field name="model_id" ref="cds_hr_overtime.model_hr_overtime"/>
+                <field name="domain_force">[('employee_id.user_id','=',user.id)]</field>
+                <field name="groups" eval="[(4, ref('cds_hr_overtime.hr_overtime_user_group'))]"/>
+                <field name="perm_read" eval="True"/>
+                <field name="perm_write" eval="True"/>
+                <field name="perm_create" eval="True"/>
+                <field name="perm_unlink" eval="True"/>
+            </record>
+
+            <record id="ir_rule_hr_overtime_approver" model="ir.rule">
+                <field name="name">ir_rule_hr_overtime_approver</field>
+                <field name="model_id" ref="cds_hr_overtime.model_hr_overtime"/>
+                <field name="domain_force">['|', ('employee_id.user_id','=',user.id), ('employee_id.parent_id.user_id','=',user.id)]</field>
+                <field name="groups" eval="[(4, ref('cds_hr_overtime.hr_overtime_approver_group'))]"/>
+                <field name="perm_read" eval="True"/>
+                <field name="perm_write" eval="True"/>
+                <field name="perm_create" eval="True"/>
+                <field name="perm_unlink" eval="True"/>
+            </record>
+
+            <record id="ir_rule_hr_overtime_manager" model="ir.rule">
+                <field name="name">ir_rule_hr_overtime_manager</field>
+                <field name="model_id" ref="cds_hr_overtime.model_hr_overtime"/>
+                <field name="domain_force">[]</field>
+                <field name="groups" eval="[(4, ref('cds_hr_overtime.hr_overtime_manager_group'))]"/>
+                <field name="perm_read" eval="True"/>
+                <field name="perm_write" eval="True"/>
+                <field name="perm_create" eval="True"/>
+                <field name="perm_unlink" eval="True"/>
+            </record>
+        </data>
+    </data>
+</odoo>

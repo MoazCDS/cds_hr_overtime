@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_hr_overtime_lines,access_hr_overtime_lines,cds_hr_overtime.model_hr_overtime_lines,,1,1,1,1
+access_task_overtime_wizard,access_task_overtime_wizard,cds_hr_overtime.model_task_overtime_wizard,,1,1,1,1
+access_hr_overtime_user,access_hr_overtime_user,cds_hr_overtime.model_hr_overtime,cds_hr_overtime.hr_overtime_user_group,1,1,1,1
+access_hr_overtime_approver,access_hr_overtime_approver,cds_hr_overtime.model_hr_overtime,cds_hr_overtime.hr_overtime_approver_group,1,1,1,1
+access_hr_overtime_manager,access_hr_overtime_manager,cds_hr_overtime.model_hr_overtime,cds_hr_overtime.hr_overtime_manager_group,1,1,1,1

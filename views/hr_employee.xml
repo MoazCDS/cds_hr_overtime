@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="hr_employee_inerhit_hr_approver" model="ir.ui.view">
+        <field name="name">hr.employee.inherit.hr.approver</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='hr_responsible_id']" position="after">
+                <field name="overtime_approver_id"/>
+            </xpath>
+            <xpath expr="//field[@name='job_title']" position="after">
+                <field name="overtime_rate"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

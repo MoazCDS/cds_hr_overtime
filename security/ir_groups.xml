@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="hr_overtime_user_group" model="res.groups">
+        <field name="name">HR Overtime User</field>
+    </record>
+
+    <record id="hr_overtime_approver_group" model="res.groups">
+        <field name="name">HR Overtime Approver</field>
+        <field name="implied_ids" eval="[(4, ref('cds_hr_overtime.hr_overtime_user_group'))]"/>
+    </record>
+
+    <record id="hr_overtime_manager_group" model="res.groups">
+        <field name="name">HR Overtime Manager</field>
+        <field name="implied_ids" eval="[(4, ref('cds_hr_overtime.hr_overtime_approver_group'))]"/>
+    </record>
+</odoo>

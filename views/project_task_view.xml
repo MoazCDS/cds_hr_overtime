@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="project_task_inerhit_create_overtime" model="ir.ui.view">
+        <field name="name">project.task.inherit.create.overtime</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_form2"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='stage_id']" position="before">
+                <button name="create_overtime" type="object" string="Create Overtime" class="oe_highlight"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
