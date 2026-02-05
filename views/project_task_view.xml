@@ -8,6 +8,20 @@
             <xpath expr="//field[@name='stage_id']" position="before">
                 <button name="create_overtime" type="object" string="Create Overtime" class="oe_highlight"/>
             </xpath>
+
+            <xpath expr="//notebook" position="inside">
+                <page string="Overtime" invisible="overtime_count == 0">
+                    <field name="overtime_line_ids" mode="list,form" create="0" edit="0" delete="0" readonly="1">
+                        <list editable="bottom" string="Overtime Lines">
+                            <field name="date" width="10%"/>
+                            <field name="overtime_id" width="30%"/>
+                            <field name="from_time" widget="float_time" width="20%"/>
+                            <field name="to_time" widget="float_time" width="20%"/>
+                            <field name="total_time" sum="Total" width="20%"/>
+                        </list>
+                    </field>
+                </page>
+            </xpath>
         </field>
     </record>
 </odoo>

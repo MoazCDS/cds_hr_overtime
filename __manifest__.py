@@ -5,7 +5,7 @@
     'category': 'HR',
     'version': '0.1',
     'license': 'OPL-1',
-    'depends': ['hr', 'project'],
+    'depends': ['hr', 'project', 'hr_holidays', 'account'],
     'data': [
         "security/ir_groups.xml",
         "security/ir_rules.xml",

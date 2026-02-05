@@ -25,8 +25,13 @@
                         <button name="change_state" type="object" string="Pay" class="oe_highlight"
                                 context="{'state': 'paid'}" invisible="state != 'approved'"
                                 groups="cds_hr_overtime.hr_overtime_manager_group"/>
-                        <button name="change_state" type="object" string="Approve" class="oe_highlight"
-                                context="{'state': 'approved'}"
+                            <button name="action_view_payment"
+                                    type="object"
+                                    class="oe_stat_button"
+                                    icon="fa-money"
+                                    invisible="payment_count == 0">
+                                <field name="payment_count" widget="statinfo" string="Payment"/>
+                            </button>
                                 invisible="state != 'draft' or not is_overtime_approver"/>
                         <field name="state" widget="statusbar"/>
                     </header>
@@ -63,6 +68,29 @@
                                 </field>
                             </page>
                         </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="hr_overtime_lines_form_view" model="ir.ui.view">
+            <field name="name">hr.overtime.lines.form</field>
+            <field name="model">hr.overtime.lines</field>
+            <field name="arch" type="xml">
+                <form string="Overtime Line">
+                    <sheet>
+                        <group>
+                            <field name="task_id" readonly="overtime_id.state != 'draft'"/>
+                            <field name="date" readonly="overtime_id.state != 'draft'"/>
+                        </group>
+                        <group>
+                            <field name="from_time" widget="float_time" readonly="overtime_id.state != 'draft'"/>
+                            <field name="to_time" widget="float_time" readonly="overtime_id.state != 'draft'"/>
+                            <field name="total_time" readonly="1"/>
+                        </group>
+                        <group>
+                            <field name="overtime_id" readonly="1"/>
+                        </group>
                     </sheet>
                 </form>
             </field>

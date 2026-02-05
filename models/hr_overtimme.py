@@ -19,6 +19,13 @@ class HrOvertime(models.Model):
     ], required=True)
     is_overtime_approver = fields.Boolean(compute="_compute_is_overtime_approver_manager")
     is_overtime_manager = fields.Boolean(compute="_compute_is_overtime_approver_manager")
+    payment_id = fields.Many2one('account.payment', readonly=True)
+    payment_count = fields.Integer(compute='_compute_payment_count')
+
+    @api.depends('payment_id')
+    def _compute_payment_count(self):
+        for rec in self:
+            rec.payment_count = 1 if rec.payment_id else 0
 
     @api.depends('employee_id')
     def _compute_is_overtime_approver_manager(self):
@@ -60,9 +67,20 @@ class HrOvertime(models.Model):
                     'amount': rec.total_time * rec.employee_id.overtime_rate if rec.employee_id.overtime_rate else 0,
                     'date': rec.date,
                 })
+                rec.payment_id = payment.id
                 return payment
 
+    def action_view_payment(self):
+        self.ensure_one()
 
+        return {
+            'type': 'ir.actions.act_window',
+            'name': 'Payment',
+            'view_mode': 'form',
+            'res_model': 'account.payment',
+            'res_id': self.payment_id.id,
+            'target': 'current',
+        }
 
 class HrOvertimeLines(models.Model):
     _name = 'hr.overtime.lines'

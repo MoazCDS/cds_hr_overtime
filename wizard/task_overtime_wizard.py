@@ -6,7 +6,7 @@ class SaleExcelExportWizard(models.TransientModel):
 
     date = fields.Date(required=True)
     from_time = fields.Float(string="From", required=True)
-    to_time = fields.Float(string="From", required=True)
+    to_time = fields.Float(string="To", required=True)
     type = fields.Selection([
         ('work_hours', 'Work Hours'),
         ('weekend', 'Weekend'),
