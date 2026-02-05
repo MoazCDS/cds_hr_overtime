@@ -20,21 +20,22 @@
                 <form string="Overtime">
                     <header>
                         <button name="change_state" type="object" string="Approve" class="oe_highlight"
-                            context="{'state': 'approved'}" invisible="state != 'draft' or is_overtime_approver"
-                            groups="cds_hr_overtime.hr_overtime_approver_group"/>
+                                context="{'state': 'approved'}" invisible="state != 'draft' or is_overtime_approver"
+                                groups="cds_hr_overtime.hr_overtime_approver_group"/>
                         <button name="change_state" type="object" string="Pay" class="oe_highlight"
-                            context="{'state': 'paid'}" invisible="state != 'approved'"
-                            groups="cds_hr_overtime.hr_overtime_manager_group"/>
+                                context="{'state': 'paid'}" invisible="state != 'approved'"
+                                groups="cds_hr_overtime.hr_overtime_manager_group"/>
                         <button name="change_state" type="object" string="Approve" class="oe_highlight"
-                            context="{'state': 'approved'}" invisible="state != 'draft' or not is_overtime_approver"/>
+                                context="{'state': 'approved'}"
+                                invisible="state != 'draft' or not is_overtime_approver"/>
                         <field name="state" widget="statusbar"/>
                     </header>
                     <sheet>
                         <div class="oe_title">
                             <label for="employee_id"/>
-                                <h1>
-                                    <field name="employee_id" readonly="not is_overtime_manager or state != 'draft'"/>
-                                </h1>
+                            <h1>
+                                <field name="employee_id" readonly="not is_overtime_manager or state != 'draft'"/>
+                            </h1>
                         </div>
 
                         <group>
@@ -46,18 +47,18 @@
                         <notebook>
                             <page string="Overtime Lines" name="overtime_lines">
                                 <field readonly="state != 'draft'"
-                                    name="line_ids"
-                                    widget="sol_o2m"
-                                    mode="list"
-                                    aggregated_fields="task_id,from_time,to_time">
+                                       name="line_ids"
+                                       widget="sol_o2m"
+                                       mode="list"
+                                       aggregated_fields="task_id,from_time,to_time">
                                     <list string="Overtime Lines"
-                                        editable="bottom"
-                                        limit="200">
+                                          editable="bottom"
+                                          limit="200">
                                         <field name="task_id" width="25%"/>
                                         <field name="date" width="25%"/>
-                                        <field name="total_time" width="25%" widget="float_time" sum="Total Time"/>
-                                        <field name="from_time" width="25%" widget="float_time"/>
-                                        <field name="to_time" width="25%" widget="float_time"/>
+                                        <field name="total_time" width="25%" sum="Total Time"/>
+                                        <field name="from_time" width="25%" widget="float_time_selection" />
+                                        <field name="to_time" width="25%" widget="float_time_selection" />
                                     </list>
                                 </field>
                             </page>
@@ -72,11 +73,15 @@
             <field name="res_model">hr.overtime</field>
             <field name="view_mode">list,form</field>
         </record>
-
         <menuitem
-            id="hr_overtime_menu_item"
-            name="Overtime"
-            parent="hr_overtime_root_menu"
-            action="hr_overtime_action"/>
+                id="hr_overtime_root_menu"
+                name="Overtime"
+                web_icon="cds_hr_overtime,static/imgs/time.png"
+                groups="cds_hr_overtime.hr_overtime_user_group"/>
+        <menuitem
+                id="hr_overtime_menu_item"
+                name="Overtime"
+                parent="hr_overtime_root_menu"
+                action="hr_overtime_action"/>
     </data>
 </odoo>

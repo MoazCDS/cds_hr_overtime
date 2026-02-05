@@ -1,17 +1,15 @@
 {
-    'name': "Virtual Keyboard",
+    'name': "CDS HR Overtime",
     'summary': "",
     'description': """""",
     'category': 'HR',
     'version': '0.1',
     'license': 'OPL-1',
-    'currency': 'USD',
     'depends': ['hr', 'project'],
     'data': [
         "security/ir_groups.xml",
         "security/ir_rules.xml",
         "security/ir.model.access.csv",
-        "views/base_menu.xml",
         "views/hr_overtime_view.xml",
         "views/hr_employee.xml",
         "views/project_task_view.xml",
